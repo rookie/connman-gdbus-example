@@ -14,9 +14,10 @@ AM_PROG_CC_C_O
 AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for libraries.
-PKG_CHECK_MODULES(GLIB, [ glib-2.0 >= 2.6.30,
-			  gobject-2.0 >= 2.6.30,
-			  gio-2.0 >= 2.6.30 ])
+PKG_CHECK_MODULES(GLIB,		[ glib-2.0 >= 2.6.30 ])
+PKG_CHECK_MODULES(GOBJECT,	[ gobject-2.0 >= 2.6.30 ])
+PKG_CHECK_MODULES(GIO,		[ gio-2.0 >= 2.6.30 ])
+PKG_CHECK_MODULES(GIO_UNIX,	[ gio-unix-2.0 >= 2.6.30 ])
 
 AC_OUTPUT([
 	Makefile
