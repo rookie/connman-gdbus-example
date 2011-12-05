@@ -1,0 +1,14 @@
+aclocal.m4
+autom4te.cache/
+compile
+config.*
+configure
+install-sh
+missing
+Makefile
+Makefile.in
+libtool
+stamp-h1
+depcomp
+*~
+*.swp
