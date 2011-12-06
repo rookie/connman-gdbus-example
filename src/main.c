@@ -29,6 +29,8 @@ int main(int argc, char **argv)
 
   g_type_init();
 
+  loop = g_main_loop_new(NULL, FALSE);
+
   if (geteuid() == 0)
     {
       g_message("Running as root, using the system bus");
@@ -47,6 +49,10 @@ int main(int argc, char **argv)
       g_error("Failed to create manager object");
       return -1;
     }
+
+  g_message("Connman state: %s", connman_manager_is_online(manager) ? "ONLINE" : "OFFLINE");
+  g_message("Entering runloop ...");
+  g_main_loop_run(loop);
 
   return 0;
 }

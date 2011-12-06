@@ -5,7 +5,9 @@ sbin_PROGRAMS = connman-test
 connman_test_SOURCES = 		\
 	main.c 			\
 	connman-generated.c	\
-	connman-manager.c
+	connman-manager.c	\
+	connman-service.c	\
+	connman-technology.c
 
 connman_test_CFLAGS = -Wall -O0 -g
 

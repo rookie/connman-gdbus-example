@@ -99,4 +99,18 @@
 		</signal>
 	</interface>
 	<node name="net"/>
+
+	<interface name="net.connman.Technology">
+		<method name="GetProperties">
+			<arg type="a{sv}" direction="out"/>
+		</method>
+		<method name="SetProperty">
+			<arg type="s" direction="in"/>
+			<arg type="v" direction="in"/>
+		</method>
+		<signal name="PropertyChanged">
+			<arg type="s"/>
+			<arg type="v"/>
+		</signal>
+	</interface>
 </node>

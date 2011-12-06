@@ -3,6 +3,7 @@
 
 #include <gio/gio.h>
 #include <glib-object.h>
+#include "connman-service.h"
 
 G_BEGIN_DECLS
 
@@ -11,11 +12,19 @@ typedef struct _ConnmanManagerClass ConnmanManagerClass;
 
 struct _ConnmanManagerClass {
   GObjectClass parent_class;
-
-  /* signals */
-  void  (* skig) (ConnmanManager *manager);
 };
 
+gboolean connman_manager_connect_service(ConnmanManager *manager,
+                                         ConnmanService *service,
+                                         const gchar *secret);
+gboolean connman_manager_enable_tethering(ConnmanManager *manager,
+                                          const gchar *bssid,
+                                          const gchar *secret);
+gboolean connman_manager_disable_tethering(ConnmanManager *manager);
+
+gboolean connman_manager_is_online (ConnmanManager *manager);
+GSList *connman_manager_get_services(ConnmanManager *manager);
+gboolean connman_manager_update_services(ConnmanManager *manager);
 ConnmanManager *connman_manager_new(GBusType bus_type);
 
 GType connman_manager_get_type (void);

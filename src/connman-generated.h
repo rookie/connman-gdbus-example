@@ -1080,6 +1080,203 @@ GType connman_proxy_clock_skeleton_get_type (void) G_GNUC_CONST;
 ConnmanProxyClock *connman_proxy_clock_skeleton_new (void);
 
 
+/* ------------------------------------------------------------------------ */
+/* Declarations for net.connman.Technology */
+
+#define CONNMAN_PROXY_TYPE_TECHNOLOGY (connman_proxy_technology_get_type ())
+#define CONNMAN_PROXY_TECHNOLOGY(o) (G_TYPE_CHECK_INSTANCE_CAST ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY, ConnmanProxyTechnology))
+#define CONNMAN_PROXY_IS_TECHNOLOGY(o) (G_TYPE_CHECK_INSTANCE_TYPE ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY))
+#define CONNMAN_PROXY_TECHNOLOGY_GET_IFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY, ConnmanProxyTechnologyIface))
+
+struct _ConnmanProxyTechnology;
+typedef struct _ConnmanProxyTechnology ConnmanProxyTechnology;
+typedef struct _ConnmanProxyTechnologyIface ConnmanProxyTechnologyIface;
+
+struct _ConnmanProxyTechnologyIface
+{
+  GTypeInterface parent_iface;
+
+
+  gboolean (*handle_get_properties) (
+    ConnmanProxyTechnology *object,
+    GDBusMethodInvocation *invocation);
+
+  gboolean (*handle_set_property) (
+    ConnmanProxyTechnology *object,
+    GDBusMethodInvocation *invocation,
+    const gchar *arg_unnamed_arg0,
+    GVariant *arg_unnamed_arg1);
+
+  void (*property_changed) (
+    ConnmanProxyTechnology *object,
+    const gchar *arg_unnamed_arg0,
+    GVariant *arg_unnamed_arg1);
+
+};
+
+GType connman_proxy_technology_get_type (void) G_GNUC_CONST;
+
+GDBusInterfaceInfo *connman_proxy_technology_interface_info (void);
+guint connman_proxy_technology_override_properties (GObjectClass *klass, guint property_id_begin);
+
+
+/* D-Bus method call completion functions: */
+void connman_proxy_technology_complete_get_properties (
+    ConnmanProxyTechnology *object,
+    GDBusMethodInvocation *invocation,
+    GVariant *unnamed_arg0);
+
+void connman_proxy_technology_complete_set_property (
+    ConnmanProxyTechnology *object,
+    GDBusMethodInvocation *invocation);
+
+
+
+/* D-Bus signal emissions functions: */
+void connman_proxy_technology_emit_property_changed (
+    ConnmanProxyTechnology *object,
+    const gchar *arg_unnamed_arg0,
+    GVariant *arg_unnamed_arg1);
+
+
+
+/* D-Bus method calls: */
+void connman_proxy_technology_call_get_properties (
+    ConnmanProxyTechnology *proxy,
+    GCancellable *cancellable,
+    GAsyncReadyCallback callback,
+    gpointer user_data);
+
+gboolean connman_proxy_technology_call_get_properties_finish (
+    ConnmanProxyTechnology *proxy,
+    GVariant **out_unnamed_arg0,
+    GAsyncResult *res,
+    GError **error);
+
+gboolean connman_proxy_technology_call_get_properties_sync (
+    ConnmanProxyTechnology *proxy,
+    GVariant **out_unnamed_arg0,
+    GCancellable *cancellable,
+    GError **error);
+
+void connman_proxy_technology_call_set_property (
+    ConnmanProxyTechnology *proxy,
+    const gchar *arg_unnamed_arg0,
+    GVariant *arg_unnamed_arg1,
+    GCancellable *cancellable,
+    GAsyncReadyCallback callback,
+    gpointer user_data);
+
+gboolean connman_proxy_technology_call_set_property_finish (
+    ConnmanProxyTechnology *proxy,
+    GAsyncResult *res,
+    GError **error);
+
+gboolean connman_proxy_technology_call_set_property_sync (
+    ConnmanProxyTechnology *proxy,
+    const gchar *arg_unnamed_arg0,
+    GVariant *arg_unnamed_arg1,
+    GCancellable *cancellable,
+    GError **error);
+
+
+
+/* ---- */
+
+#define CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY (connman_proxy_technology_proxy_get_type ())
+#define CONNMAN_PROXY_TECHNOLOGY_PROXY(o) (G_TYPE_CHECK_INSTANCE_CAST ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY, ConnmanProxyTechnologyProxy))
+#define CONNMAN_PROXY_TECHNOLOGY_PROXY_CLASS(k) (G_TYPE_CHECK_CLASS_CAST ((k), CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY, ConnmanProxyTechnologyProxyClass))
+#define CONNMAN_PROXY_TECHNOLOGY_PROXY_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY, ConnmanProxyTechnologyProxyClass))
+#define CONNMAN_PROXY_IS_TECHNOLOGY_PROXY(o) (G_TYPE_CHECK_INSTANCE_TYPE ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY))
+#define CONNMAN_PROXY_IS_TECHNOLOGY_PROXY_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), CONNMAN_PROXY_TYPE_TECHNOLOGY_PROXY))
+
+typedef struct _ConnmanProxyTechnologyProxy ConnmanProxyTechnologyProxy;
+typedef struct _ConnmanProxyTechnologyProxyClass ConnmanProxyTechnologyProxyClass;
+typedef struct _ConnmanProxyTechnologyProxyPrivate ConnmanProxyTechnologyProxyPrivate;
+
+struct _ConnmanProxyTechnologyProxy
+{
+  /*< private >*/
+  GDBusProxy parent_instance;
+  ConnmanProxyTechnologyProxyPrivate *priv;
+};
+
+struct _ConnmanProxyTechnologyProxyClass
+{
+  GDBusProxyClass parent_class;
+};
+
+GType connman_proxy_technology_proxy_get_type (void) G_GNUC_CONST;
+
+void connman_proxy_technology_proxy_new (
+    GDBusConnection     *connection,
+    GDBusProxyFlags      flags,
+    const gchar         *name,
+    const gchar         *object_path,
+    GCancellable        *cancellable,
+    GAsyncReadyCallback  callback,
+    gpointer             user_data);
+ConnmanProxyTechnology *connman_proxy_technology_proxy_new_finish (
+    GAsyncResult        *res,
+    GError             **error);
+ConnmanProxyTechnology *connman_proxy_technology_proxy_new_sync (
+    GDBusConnection     *connection,
+    GDBusProxyFlags      flags,
+    const gchar         *name,
+    const gchar         *object_path,
+    GCancellable        *cancellable,
+    GError             **error);
+
+void connman_proxy_technology_proxy_new_for_bus (
+    GBusType             bus_type,
+    GDBusProxyFlags      flags,
+    const gchar         *name,
+    const gchar         *object_path,
+    GCancellable        *cancellable,
+    GAsyncReadyCallback  callback,
+    gpointer             user_data);
+ConnmanProxyTechnology *connman_proxy_technology_proxy_new_for_bus_finish (
+    GAsyncResult        *res,
+    GError             **error);
+ConnmanProxyTechnology *connman_proxy_technology_proxy_new_for_bus_sync (
+    GBusType             bus_type,
+    GDBusProxyFlags      flags,
+    const gchar         *name,
+    const gchar         *object_path,
+    GCancellable        *cancellable,
+    GError             **error);
+
+
+/* ---- */
+
+#define CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON (connman_proxy_technology_skeleton_get_type ())
+#define CONNMAN_PROXY_TECHNOLOGY_SKELETON(o) (G_TYPE_CHECK_INSTANCE_CAST ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON, ConnmanProxyTechnologySkeleton))
+#define CONNMAN_PROXY_TECHNOLOGY_SKELETON_CLASS(k) (G_TYPE_CHECK_CLASS_CAST ((k), CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON, ConnmanProxyTechnologySkeletonClass))
+#define CONNMAN_PROXY_TECHNOLOGY_SKELETON_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON, ConnmanProxyTechnologySkeletonClass))
+#define CONNMAN_PROXY_IS_TECHNOLOGY_SKELETON(o) (G_TYPE_CHECK_INSTANCE_TYPE ((o), CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON))
+#define CONNMAN_PROXY_IS_TECHNOLOGY_SKELETON_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), CONNMAN_PROXY_TYPE_TECHNOLOGY_SKELETON))
+
+typedef struct _ConnmanProxyTechnologySkeleton ConnmanProxyTechnologySkeleton;
+typedef struct _ConnmanProxyTechnologySkeletonClass ConnmanProxyTechnologySkeletonClass;
+typedef struct _ConnmanProxyTechnologySkeletonPrivate ConnmanProxyTechnologySkeletonPrivate;
+
+struct _ConnmanProxyTechnologySkeleton
+{
+  /*< private >*/
+  GDBusInterfaceSkeleton parent_instance;
+  ConnmanProxyTechnologySkeletonPrivate *priv;
+};
+
+struct _ConnmanProxyTechnologySkeletonClass
+{
+  GDBusInterfaceSkeletonClass parent_class;
+};
+
+GType connman_proxy_technology_skeleton_get_type (void) G_GNUC_CONST;
+
+ConnmanProxyTechnology *connman_proxy_technology_skeleton_new (void);
+
+
 G_END_DECLS
 
 #endif /* __SRC_CONNMAN_GENERATED_H__ */
